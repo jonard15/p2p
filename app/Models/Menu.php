@@ -8,5 +8,5 @@ class Menu extends Model
 {
     protected $table = 'menus';
     protected $primaryKey = 'menu_id';
-    protected $fillable = ['title', 'icon','path','parent_id','isActive','sorting'];
+    protected $fillable = ['title', 'icon','path','parent_id','isActive','sorting','color'];
 }

@@ -11,7 +11,8 @@ export default {
           icon: '',
           path: '',
           parent_id: 0,
-          isActive: 0
+          isActive: 0,
+          color: '',
         },
         editedItem: {
             menu_id: '',
@@ -19,7 +20,8 @@ export default {
             icon: '',
             parent_id: '',
             parent: 0,
-            isActive: 0
+            isActive: 0,
+            color: '',
           },
         selectedId: null,
 
@@ -102,21 +104,22 @@ export default {
         addMenu({commit}, data) {
             axios.post('menu/create', data)
                 .then(response => {
-                // toast.fire({
-                //     icon: 'success',
-                //     title: "menu create succefully"
-                // })
-                location.reload();
-                commit('add_role', response.data)
+                    location.reload();
+                toast.fire({
+                    icon: 'success',
+                    title: "menu create succefully"
+                })
+                
+                commit('add_menu', response.data)
                 })
                 .catch(error => console.log(error))
             },
             updateMenu({commit},data){
                 axios.put(`/menu/update/${data.menu_id}`,data).then((response) =>{
-                    // toast.fire({
-                    //     icon: 'success',
-                    //     title: "menu successfully updated"
-                    // })
+                    toast.fire({
+                        icon: 'success',
+                        title: "menu successfully updated"
+                    })
                     location.reload();
                     commit('update_menu', response.data)
                 }).catch(error => console.log(error))

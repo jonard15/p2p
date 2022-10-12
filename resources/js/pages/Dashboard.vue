@@ -14,7 +14,7 @@
   <v-container>
 		<v-row dense class="pb-10">
 			<v-col v-for="(item, i) in items" :key="i" cols="3">
-				<v-card :color="item.color" elevation="5" dark outlined shaped>
+				<v-card :color="item.color" elevation="5" dark outlined>
 					<div class="d-flex flex-no-wrap justify-space-between">
 						<div>
 							<v-card-title class="text-h6" v-text="item.title"></v-card-title>

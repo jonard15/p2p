@@ -52,6 +52,7 @@ class MenuController extends Controller
             'parent_id' => $request->parent_id ? $request->parent_id : 0,
             'sorting' => $count,
             'isActive' => $request->isActive,
+            'color' => $request->color,
         ]);
     }
 
@@ -108,6 +109,7 @@ class MenuController extends Controller
         $menu->path = $request->path ? $request->path : '';
         $menu->parent_id =$request->parent_id;
         $menu->isActive = $request->isActive;
+        $menu->color = $request->color;
         $menu->save();
 
         return response()->json('ok',200);
