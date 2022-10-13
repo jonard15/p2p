@@ -1,0 +1,10 @@
+    filteredMenuParent(){
+        const menuPermission = this.menusPermissions.filter(menu => menu.parent_id === 0 && menu.isActive === true)
+        const menus = this.menus.filter(menu => menu.parent_id === 0 && menu.isActive === true);
+        const filterIsActive = menus.concat(menuPermission.filter(x => !menus.some(y => y.isActive == x.isActive)))
+        return filterIsActive
+    },
+    filteredMenuChild(){
+        const menuPermission = this.menus.filter(menu => menu.parent_id != 0 && menu.isActive === true)
+        return menuPermission
+    },
