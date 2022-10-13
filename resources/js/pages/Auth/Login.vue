@@ -38,7 +38,7 @@
                               />
                               <div class="text-center">
                                 <v-btn small color="blue-grey accent-3" @click.prevent="login" dark>LOGIN</v-btn>
-                                <v-btn small dark :to="{ name: 'register' }">Register</v-btn>
+                                <!-- <v-btn small dark :to="{ name: 'register' }">Register</v-btn> -->
                               </div>
                             </v-container>
 

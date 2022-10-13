@@ -18,6 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('title');
             $table->string('path');
             $table->string('icon');
+            $table->string('color')->nullable();
             $table->integer('parent_id')->default(0);
             $table->boolean('isActive')->default(0);
             $table->integer('sorting')->nullable();

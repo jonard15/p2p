@@ -26,7 +26,7 @@
               class="mb-1 mr-2"
               v-bind="attrs"
               v-on="on"
-              x-large
+              large
             >mdi-plus-circle</v-icon>
           </template>
           <v-card>

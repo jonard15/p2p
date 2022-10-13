@@ -1,9 +1,9 @@
 <template>
-    <v-navigation-drawer v-model="drawer" color="#3C4B64" app dark>
+    <v-navigation-drawer v-model="drawer" color="#2E3C56" app dark>
     <v-list-item>
         <v-list-item-content class="text-center pa-5">
-          <v-list-item-title class="text-h6">
-            <v-icon>mdi-account</v-icon> Welcome Client
+          <v-list-item-title class="text-overline">
+            <v-icon x-large>mdi-account</v-icon> <br><br>Welcome Admin
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -64,6 +64,7 @@ export default {
   },
   created() {
     this.getMenus();
+    console.log(this.filteredMenuParents)
 },
 }
 </script>

@@ -13,18 +13,18 @@
 
   <v-container>
 		<v-row dense class="pb-10">
-			<v-col v-for="(item, i) in items" :key="i" cols="3">
-				<v-card :color="item.color" elevation="5" dark outlined>
+			<v-col v-for="(item, i) in items" :key="i" cols="12" md="3" lg="3">
+				<v-card color="#FFFFFF" elevation="5" dark outlined>
 					<div class="d-flex flex-no-wrap justify-space-between">
 						<div>
-							<v-card-title class="text-h6" v-text="item.title"></v-card-title>
-							<v-card-subtitle class="text-h4" v-text="item.value"></v-card-subtitle>
+							<v-card-title class="black--text text-h6" v-text="item.title"></v-card-title>
+							<v-card-subtitle class="black--text text-h4" v-text="item.value"></v-card-subtitle>
 							<v-card-actions>
-								<v-btn class="ml-2 mt-5" outlined rounded small> View Data </v-btn>
+								<v-btn color="primary" class="" outlined rounded small> View Data </v-btn>
 							</v-card-actions>
 						</div>
 						<v-avatar class="ma-3" size="125" tile>
-							<v-icon size="80" color="white">
+							<v-icon size="80" :color="item.color">
 								{{item.icon}}
 							</v-icon>
 						</v-avatar>
@@ -33,24 +33,7 @@
 			</v-col>
 		</v-row>
         <v-row>
-           <v-col cols="6">
-            <v-card class="elevation-5 pa-5 mb-10">
-                    <v-sparkline
-                        :value="value"
-                        :gradient="gradient"
-                        :smooth="radius || false"
-                        :padding="padding"
-                        :line-width="width"
-                        :stroke-linecap="lineCap"
-                        :gradient-direction="gradientDirection"
-                        :fill="fill"
-                        :type="type"
-                        :auto-line-width="autoLineWidth"
-                        auto-draw
-                    ></v-sparkline>
-            </v-card>
-           </v-col>
-           <v-col cols="6">
+           <v-col cols="12">
             <v-card class="elevation-5 pa-5 mb-10">
                     <v-sparkline
                         :value="value"
@@ -114,7 +97,7 @@ export default {
         {
           text: 'Home',
           disabled: false,
-          href: '/',
+          // href: '/',
         },
         {
           text: 'Dashboard',
@@ -133,22 +116,22 @@ export default {
       type: 'trend',
       autoLineWidth: false,
             items: [{
-				color: '#FC9309',
+				color: '#1CC9E4',
 				value: '2',
 				title: 'Card 1',
 				icon: 'mdi-account-supervisor'
 			}, {
-				color: '#17BCD0',
+				color: '#15D3B2',
 				value: '100',
 				title: 'Card 2',
 				icon: 'mdi-store'
 			}, {
-				color: '#49A44D',
+				color: '#1D75E5',
 				value: '20',
 				title: 'Card 3',
 				icon: 'mdi-check'
 			}, {
-				color: '#EE504D',
+				color: '#E62154',
 				value: '10',
 				title: 'Card 4',
 				icon: 'mdi-alpha-p'

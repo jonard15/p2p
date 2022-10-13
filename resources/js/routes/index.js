@@ -5,7 +5,9 @@ import User from '../pages/Settings/Users.vue'
 import Role from '../pages/Settings/Roles.vue'
 import Permission from '../pages/Settings/Permission.vue'
 import Menu from '../pages/Settings/Menus.vue'
-
+import Client from '../pages/Settings/Client.vue'
+import Plan from '../pages/Settings/Plan.vue'
+import Subscription from '../pages/Settings/Subscription.vue'
 export default {
     mode: 'history',
     routes: [
@@ -49,6 +51,24 @@ export default {
             path: '/menus',
             name: 'menus',
             component: Menu,
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/client',
+            name: 'client',
+            component: Client,
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/plan',
+            name: 'plan',
+            component: Plan,
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/subscription',
+            name: 'subscription',
+            component: Subscription,
             meta: { requiresAuth: true }
         },
     ]

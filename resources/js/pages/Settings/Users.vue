@@ -1,4 +1,16 @@
 <template>
+<div>
+    <v-breadcrumbs :items="breadcrums">
+    <template v-slot:item="{ item }">
+      <v-breadcrumbs-item
+        :href="item.href"
+        :disabled="item.disabled"
+      >
+        {{ item.text.toUpperCase() }}
+      </v-breadcrumbs-item>
+    </template>
+  </v-breadcrumbs>
+<v-container>
   <data-table 
     :dataSource="users"
     :table_headers="headers" 
@@ -74,10 +86,25 @@
       </v-container>
     </template>
   </data-table>
+</v-container>
+</div>
+
+
 </template>
 <script>
 export default {
     data: () => ({
+      breadcrums: [
+      {
+        text: 'DASHBOARD',
+        disabled: false,
+        href: '/dashboard',
+      },
+      {
+        text: 'USERS',
+        disabled: false,
+      },
+    ],
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Email', value: 'email' },

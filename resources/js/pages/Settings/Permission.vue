@@ -1,7 +1,17 @@
 <template>
-  <div>
-    <v-container fluid>
-      <v-row align="center">
+<div>
+    <v-breadcrumbs :items="breadcrums">
+    <template v-slot:item="{ item }">
+      <v-breadcrumbs-item
+        :href="item.href"
+        :disabled="item.disabled"
+      >
+        {{ item.text.toUpperCase() }}
+      </v-breadcrumbs-item>
+    </template>
+  </v-breadcrumbs>
+  <v-container>
+          <v-row  class="pa-5" align="center">
         <v-col cols="3">
           <v-autocomplete
               v-model="selectedId"
@@ -20,64 +30,127 @@
           >
         </v-col>
       </v-row>
-      <v-simple-table fixed-header height="700px" v-if="filteredMenuParent.length">
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th class="text-left">Title</th>
-              <th class="text-left">Read</th>
-              <th class="text-left">Write</th>
-              <th class="text-left">Update</th>
-              <th class="text-left">Delete</th>
-              <th class="text-left">Select/Unselect</th>
-            </tr>
-          </thead>
-          <tbody v-for="menu in menus" :key="menu.menu_id">
-            <tr
-              v-for="item in menusPermissions"
-              :key="item.menu_id"
-              v-if=" menu.menu_id === item.menu_id && menu.isActive === 1"
-            >
-              <td>
-                <span class="font-weight-bold" v-if="menu.parent_id === 0"><v-icon>{{menu.icon}}</v-icon> {{menu.title}}</span> 
-                <span v-else class="ml-5 font-weight-light"><v-icon>{{menu.icon}}</v-icon> {{menu.title}}</span> 
-              </td>
-              <td><v-checkbox v-model="item.is_read"></v-checkbox></td>
-              <td><v-checkbox v-model="item.is_create"></v-checkbox></td>
-              <td><v-checkbox v-model="item.is_edit"></v-checkbox></td>
-              <td><v-checkbox v-model="item.is_delete"></v-checkbox></td>
-              <td>
-                <v-btn
-                  class="ma-2 white--text"
-                  small
-                  color="info"
-                  @click="item.is_read = item.is_create = item.is_edit = item.is_delete = 1;"
-                  >Select All</v-btn
-                >
-                <v-btn
-                  class="ma-2 white--text"
-                  small
-                  color="blue-grey"
-                  @click="item.is_read = item.is_create = item.is_edit = item.is_delete = 0;"
-                  >Unselect All</v-btn
-                >
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-      <!-- overlay loader -->
-      <v-overlay :value="rs_overlay" style="position:absolute;" light color="#ececec">
-        <v-progress-circular :width="5" color="green" indeterminate></v-progress-circular>
-      </v-overlay>
-    </v-container>
+  <v-card
+    v-for="item in filteredMenuParent"
+    :key="item.menu_id"
+    width="600"
+  >
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title class="text-h5">
+          {{item.title}}
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-list class="transparent"
+
+    >
+      <v-list-item
+              v-for="child in filteredChildMenu"
+        :key="child.menu_id"
+        v-if="item.menu_id === child.parent_id"
+      >
+      
+        <v-list-item-title>
+          {{ child.title }}
+
+        </v-list-item-title>
+  <div class="text-center">
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      small
+      color="primary"
+    >
+      <v-icon dark>
+        mdi-minus
+      </v-icon>
+    </v-btn>
+
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      small
+      color="pink"
+    >
+      <v-icon dark>
+        mdi-heart
+      </v-icon>
+    </v-btn>
+
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      color="indigo"
+    >
+      <v-icon dark>
+        mdi-plus
+      </v-icon>
+    </v-btn>
+
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      color="teal"
+    >
+      <v-icon dark>
+        mdi-format-list-bulleted-square
+      </v-icon>
+    </v-btn>
+
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      large
+      color="cyan"
+    >
+      <v-icon dark>
+        mdi-pencil
+      </v-icon>
+    </v-btn>
+
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      large
+      color="purple"
+    >
+      <v-icon dark>
+        mdi-android
+      </v-icon>
+    </v-btn>
   </div>
+      </v-list-item>
+    </v-list>
+
+  </v-card>
+  </v-container>
+
+</div>
 </template>
 
 <script>
 export default {
   data(){
   return {
+      breadcrums: [
+        {
+          text: 'Home',
+          disabled: false,
+          href: '/dashboard',
+        },
+        {
+          text: 'Permissions',
+          disabled: false,
+        },
+      ],
       menusPermissions: [],
     }
   },
@@ -100,8 +173,11 @@ export default {
         return this.$store.getters['Permission/rs_overlay'];
     },
     filteredMenuParent(){
-        return this.menusPermissions.filter(menu => menu.parent_id === 0 || menu.parent_id)
+        return this.menusPermissions.filter(menu => menu.parent_id === 0 && menu.isActive === 1)
     },
+      filteredChildMenu(){
+          return this.menusPermissions.filter(menu => menu.parent_id != 0 && menu.isActive === 1)
+      },
   },
   methods: {
     roleName(item){

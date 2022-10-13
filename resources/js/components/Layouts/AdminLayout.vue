@@ -10,7 +10,7 @@
             </v-container>
         </v-main>
 
-        <app-footer v-if="token"></app-footer>
+        <!-- <app-footer v-if="token"></app-footer> -->
     </v-app>
 
 </template>

@@ -1,14 +1,10 @@
 <template>
-    <v-app-bar app color="white">
+    <v-app-bar app dark color="#222E44">
         <v-app-bar-nav-icon @click.stop="$emit('toggle-drawer')"></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
         <!-- <v-btn icon>
         <v-icon>mdi-bell</v-icon>
         </v-btn> -->
-
-        <v-btn icon>
-        <v-icon> mdi-format-list-bulleted</v-icon>
-        </v-btn>
         
         <v-menu
         open-on-hover
@@ -17,11 +13,12 @@
         >
         <template v-slot:activator="{ on }">
             <v-btn
-            color="grey darken-3"
+            class="text-overline"
+            color="white"
             text
             v-on="on"
             >
-                <v-icon left>mdi-account-cog</v-icon>OPTIONS<v-divider class="px-2" vertical></v-divider>
+                <v-icon color="white" left>mdi-account-cog</v-icon>Super Admin<v-divider class="px-2" vertical></v-divider>
                 <v-icon right>mdi-chevron-down</v-icon> 
             </v-btn>
         </template>
@@ -29,8 +26,8 @@
           <v-list-item>
                 <form @submit.prevent="logout" class="d-inline-flex align-center">
                     <v-btn text type="submit" class="sideButton">
-                        <v-icon>mdi-logout</v-icon>
-                        Logout
+                        <v-icon small>mdi-logout</v-icon>
+                        <small>Logout</small>
                     </v-btn>
                 </form>
           </v-list-item>

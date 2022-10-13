@@ -15,6 +15,7 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id('role_id');
+            $table->string('role_ref')->nullable();
             $table->string('roleName');
             $table->text('permission')->nullable();
             $table->boolean('isAdmin')->default(0);

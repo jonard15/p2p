@@ -66,7 +66,7 @@
                             dark
                             >Register</v-btn
                           >
-                          <v-btn color="blue-grey accent-3" dark small :to="{ name: 'login' }">Login</v-btn>
+                          <!-- <v-btn color="blue-grey accent-3" dark small :to="{ name: 'login' }">Login</v-btn> -->
                         </div>
                       </v-container>
                     </v-form>

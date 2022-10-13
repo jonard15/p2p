@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class RoleController extends Controller
 {
@@ -54,14 +55,20 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        // $model = New Role();
-        //validate request
         $this->validate($request, [
             'roleName' => 'required'
         ]);
-    //    validateRequest($model,$request,[],[]);
+
+        $words = explode(" ", $request->roleName);
+        $acronym = "";
+
+        foreach ($words as $w) {
+            $acronym .= $w[0];
+        }
+
         return Role::create([
-            'roleName' => $request->roleName
+            'role_ref' => $acronym.$request->role_id.Carbon::now()->timestamp,
+            'roleName' => $request->roleName,
         ]);
     }
 
@@ -100,8 +107,16 @@ class RoleController extends Controller
             'roleName' => 'required|string',
         ]);
 
+        $words = explode(" ", $request->roleName);
+        $acronym = "";
+
+        foreach ($words as $w) {
+            $acronym .= $w[0];
+        }
+
         $role = Role::findOrFail($id);
 
+        $role->role_ref = $acronym.$request->role_id.Carbon::now()->timestamp;
         $role->roleName = $request->roleName;
         $role->save();
 
@@ -138,5 +153,16 @@ class RoleController extends Controller
     public function getPermission()
     {
         return Auth::user()->role->permission;
+    }
+
+    public function search(Request $request){
+        $searchWord = $request->get('s');
+        $roles = Role::where(function($query) use ($searchWord){
+            $query->where('roleName', 'ILIKE', "%$searchWord%");
+        })->get();
+
+        return response()->json([
+            'data' => $roles
+        ], 200);
     }
 }
