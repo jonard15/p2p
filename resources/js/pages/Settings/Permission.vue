@@ -30,106 +30,104 @@
           >
         </v-col>
       </v-row>
-  <v-card
-    v-for="item in filteredMenuParent"
+<!-- <v-toolbar
+  elevation="4"
+  v-for="item in filteredMenuParent"
     :key="item.menu_id"
-    width="600"
+
+
+></v-toolbar> -->
+
+<v-card
+
+    class="ma-5"
+    max-width="600"
+    tile
   >
-    <v-list-item two-line>
-      <v-list-item-content>
-        <v-list-item-title class="text-h5">
-          {{item.title}}
-        </v-list-item-title>
-      </v-list-item-content>
+    <v-list v-for="item in filteredMenuParent"
+    :key="item.menu_id">
+          <v-list-item>
+                    <!-- <v-list-item-content>
+           <v-icon v-text="item.icon"></v-icon>
+          </v-list-item-content> -->
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+                    <v-list-item-content>
+                      <v-checkbox
+              label="Read"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-checkbox
+              label="Write"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-checkbox
+              label="Update"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-checkbox
+              label="Delete"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-btn
+              color="primary"
+              small
+            >Select all</v-btn>
+          </v-list-item-content>
     </v-list-item>
-
-    <v-list class="transparent"
-
-    >
-      <v-list-item
-              v-for="child in filteredChildMenu"
-        :key="child.menu_id"
-        v-if="item.menu_id === child.parent_id"
+      <v-list-item-group
+        v-model="selectedItem"
+        color="primary"
       >
-      
-        <v-list-item-title>
-          {{ child.title }}
-
-        </v-list-item-title>
-  <div class="text-center">
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      small
-      color="primary"
-    >
-      <v-icon dark>
-        mdi-minus
-      </v-icon>
-    </v-btn>
-
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      small
-      color="pink"
-    >
-      <v-icon dark>
-        mdi-heart
-      </v-icon>
-    </v-btn>
-
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      color="indigo"
-    >
-      <v-icon dark>
-        mdi-plus
-      </v-icon>
-    </v-btn>
-
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      color="teal"
-    >
-      <v-icon dark>
-        mdi-format-list-bulleted-square
-      </v-icon>
-    </v-btn>
-
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      large
-      color="cyan"
-    >
-      <v-icon dark>
-        mdi-pencil
-      </v-icon>
-    </v-btn>
-
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      large
-      color="purple"
-    >
-      <v-icon dark>
-        mdi-android
-      </v-icon>
-    </v-btn>
-  </div>
-      </v-list-item>
+        <v-list-item
+          v-for="(child, i) in filteredChildMenu"
+          :key="i"
+          v-if="item.menu_id === child.parent_id"
+        >
+          <!-- <v-list-item-icon>
+            <v-icon v-text="child.icon"></v-icon>
+          </v-list-item-icon> -->
+                    <!-- <v-list-item-content>
+           <v-icon v-text="child.icon"></v-icon>
+          </v-list-item-content> -->
+          <v-list-item-content>
+            <v-list-item-subtitle v-text="child.title"></v-list-item-subtitle>
+          </v-list-item-content>
+                    <v-list-item-content>
+                      <v-checkbox
+              label="Read"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-checkbox
+              label="Write"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-checkbox
+              label="Update"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-checkbox
+              label="Delete"
+            ></v-checkbox>
+          </v-list-item-content>
+                              <v-list-item-content>
+                      <v-btn
+              color="primary"
+              small
+            >Select all</v-btn>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+      </v-list-item-group>
     </v-list>
-
   </v-card>
   </v-container>
 
