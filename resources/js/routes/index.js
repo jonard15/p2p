@@ -1,3 +1,4 @@
+import Home from '../pages/Home.vue'
 //Admin
 import Dashboard from '../pages/Admin/Dashboard.vue'
 import AdminLogin from '../pages/Admin/Auth/Login.vue'
@@ -16,6 +17,13 @@ import SubcriberLogin from '../pages/Subscriber/Auth/SubscriberLogin.vue'
 export default {
     mode: 'history',
     routes: [
+        {
+            path: '/',
+            admin:false,
+            name: 'home',
+            component: Home,
+            meta: { guest: true }
+        },
         //Admin
         {
             path: '/admin/login',
