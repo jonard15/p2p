@@ -57,8 +57,8 @@ export default {
       {
         axios.get('permissions').then((response) =>{
           let data = response.data;
-          this.filteredMenuParents = data.filter(menu => menu.parent_id === 0 && menu.is_read === 1 && menu.isActive === 1);
-          this.filteredMenuChilds = data.filter(menu => menu.parent_id && menu.is_read === 1 && menu.isActive === 1);
+          this.filteredMenuParents = data.filter(menu => menu.parent_id === 0 && menu.isActive === 1 || menu.isActive === true);
+          this.filteredMenuChilds = data.filter(menu => menu.parent_id && menu.is_read === 1 || menu.is_read === true && menu.isActive === 1);
         }).catch(error => console.log(error))
       },
   },

@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
         // if not, redirect to login page.
         if (!loggedIn()) {
             next({
-                path: '/login',
+                path: '/admin/login',
                 // query: { redirect: to.fullPath }
             })
         } else {
@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.guest)) {
         if (loggedIn()) {
             next({
-                path: '/dashboard',
+                path: '/admin/dashboard',
                 // query: { redirect: to.fullPath }
             })
         } else {
@@ -73,3 +73,7 @@ const app = new Vue({
     router,
     vuetify
 });
+
+
+import VuetifyMoney from "vuetify-money";
+Vue.use(VuetifyMoney);

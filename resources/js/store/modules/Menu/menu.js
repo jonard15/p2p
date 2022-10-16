@@ -20,7 +20,7 @@ export default {
             icon: '',
             parent_id: '',
             parent: 0,
-            isActive: 0,
+            isActive: 1,
             color: '',
           },
         selectedId: null,
@@ -105,10 +105,10 @@ export default {
             axios.post('menu/create', data)
                 .then(response => {
                     location.reload();
-                toast.fire({
-                    icon: 'success',
-                    title: "menu create succefully"
-                })
+                // toast.fire({
+                //     icon: 'success',
+                //     title: "menu create succefully"
+                // })
                 
                 commit('add_menu', response.data)
                 })
@@ -120,7 +120,7 @@ export default {
                         icon: 'success',
                         title: "menu successfully updated"
                     })
-                    location.reload();
+                    // location.reload();
                     commit('update_menu', response.data)
                 }).catch(error => console.log(error))
             },

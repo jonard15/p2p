@@ -1,75 +1,100 @@
-import Dashboard from '../pages/Dashboard.vue'
-import Login from '../pages/Auth/Login.vue'
-import Register from '../pages/Auth/Register.vue'
-import User from '../pages/Settings/Users.vue'
-import Role from '../pages/Settings/Roles.vue'
-import Permission from '../pages/Settings/Permission.vue'
-import Menu from '../pages/Settings/Menus.vue'
-import Client from '../pages/Settings/Client.vue'
-import Plan from '../pages/Settings/Plan.vue'
-import Subscription from '../pages/Settings/Subscription.vue'
+//Admin
+import Dashboard from '../pages/Admin/Dashboard.vue'
+import AdminLogin from '../pages/Admin/Auth/Login.vue'
+import Register from '../pages/Admin/Auth/Register.vue'
+import User from '../pages/Admin/Settings/Users.vue'
+import Role from '../pages/Admin/Settings/Roles.vue'
+import Permission from '../pages/Admin/Settings/Permission.vue'
+import Menu from '../pages/Admin/Settings/Menus.vue'
+import Subscriber from '../pages/Admin/Client/Subscriber.vue'
+import Plan from '../pages/Admin/Client/Plan.vue'
+import Subscription from '../pages/Admin/Client/Subscription.vue'
+
+//Subscriber
+import SubcriberLogin from '../pages/Subscriber/Auth/SubscriberLogin.vue'
+
 export default {
     mode: 'history',
     routes: [
+        //Admin
         {
-            path: '/login',
+            path: '/admin/login',
+            admin:true,
             name: 'login',
-            component: Login,
+            component: AdminLogin,
             meta: { guest: true }
         },
         {
-            path: '/register',
+            path: '/admin/register',
+            admin:true,
             name: 'register',
             component: Register,
             meta: { guest: true }
         },
         {
-            path: '/dashboard',
+            path: '/admin/dashboard',
+            admin:true,
             name: 'dashboard',
             component: Dashboard,
             meta: { requiresAuth: true }
         },
         {
-            path: '/users',
+            path: '/admin/users',
+            admin:true,
             name: 'users',
             component: User,
             meta: { requiresAuth: true }
         },
         {
-            path: '/roles',
+            path: '/admin/roles',
+            admin:true,
             name: 'roles',
             component: Role,
             meta: { requiresAuth: true }
         },
         {
-            path: '/permissions',
+            path: '/admin/permissions',
+            admin:true,
             name: 'permissions',
             component: Permission,
             meta: { requiresAuth: true }
         },
         {
-            path: '/menus',
+            path: '/admin/menus',
+            admin:true,
             name: 'menus',
             component: Menu,
             meta: { requiresAuth: true }
         },
         {
-            path: '/client',
-            name: 'client',
-            component: Client,
+            path: '/admin/subscriber',
+            admin:true,
+            name: 'subscriber',
+            component: Subscriber,
             meta: { requiresAuth: true }
         },
         {
-            path: '/plan',
+            path: '/admin/plan',
+            admin:true,
             name: 'plan',
             component: Plan,
             meta: { requiresAuth: true }
         },
         {
-            path: '/subscription',
+            path: '/admin/subscription',
+            admin:true,
             name: 'subscription',
             component: Subscription,
             meta: { requiresAuth: true }
+        },
+
+        //SUBSCRIBER
+        {
+            path: '/subscriber/login',
+            admin:false,
+            name: 'subcriberlogin',
+            component: SubcriberLogin,
+            meta: { guest: true }
         },
     ]
 }

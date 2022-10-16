@@ -36,11 +36,12 @@ export default {
           let data = JSON.stringify(menus)
           axios.post('assign/permission', {'permission' : data, role_id: state.selectedId}).then((response) =>{
             if(response.status == 200){
-              toast.fire({
-                icon: 'success',
-                title: "Permission successfully updated"
-            })
-              state.rs_overlay = false
+              location.reload();
+            //   toast.fire({
+            //     icon: 'success',
+            //     title: "Permission successfully updated"
+            // })
+            //   state.rs_overlay = false
             }
           }).catch(error => console.log(error))
       },

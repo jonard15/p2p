@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class plans extends Model implements AuditableContract
+class Plans extends Model implements AuditableContract
 {
     use HasFactory;
     use \OwenIt\Auditing\Auditable;
-    protected $table = 'plan';
+    protected $table = 'plans';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',

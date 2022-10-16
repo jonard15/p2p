@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class subscriptions extends Model implements AuditableContract
+class Subscriptions extends Model implements AuditableContract
 {
     use HasFactory;
     use \OwenIt\Auditing\Auditable;
